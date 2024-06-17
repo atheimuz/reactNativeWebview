@@ -3,37 +3,39 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
+import Menu1Screen from './Menu1Screen';
+import Menu2Screen from './Menu2Screen';
 
 const Tab = createBottomTabNavigator();
-
-const Menu1Screen = () => (
-  <View>
-    <Text>메뉴1</Text>
-  </View>
-);
 
 function Navigator() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={
-          {
-            // headerShown: false,
-          }
-        }>
+      <Tab.Navigator initialRouteName="Home">
         <Tab.Screen
           name="Home"
           component={HomeScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="Menu1"
+          component={Menu1Screen}
           options={({navigation}) => ({
-            title: '홈',
+            title: '메뉴1',
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => console.log(navigation)}>
+                <Text>이전</Text>
+              </TouchableOpacity>
+            ),
           })}
         />
         <Tab.Screen
-          name="Settings"
-          component={Menu1Screen}
+          name="Menu2"
+          component={Menu2Screen}
           options={({navigation}) => ({
-            title: '설정',
+            title: '메뉴2',
             headerLeft: () => (
               <TouchableOpacity onPress={() => console.log(navigation)}>
                 <Text>이전</Text>
