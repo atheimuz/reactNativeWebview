@@ -1,7 +1,15 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faHouse,
+  faGear,
+  faBars,
+  faArrowLeft,
+} from '@fortawesome/free-solid-svg-icons';
+
 import HomeScreen from './HomeScreen';
 import Menu1Screen from './Menu1Screen';
 import Menu2Screen from './Menu2Screen';
@@ -17,28 +25,38 @@ function Navigator() {
           component={HomeScreen}
           options={{
             headerShown: false,
+            title: '홈',
+            tabBarIcon: ({color, size}) => (
+              <FontAwesomeIcon icon={faHouse} color={color} size={size} />
+            ),
           }}
         />
         <Tab.Screen
-          name="Menu1"
-          component={Menu1Screen}
+          name="Setting"
+          component={Menu2Screen}
           options={({navigation}) => ({
-            title: '메뉴1',
+            title: '설정',
+            tabBarIcon: ({color, size}) => (
+              <FontAwesomeIcon icon={faGear} color={color} size={size} />
+            ),
             headerLeft: () => (
               <TouchableOpacity onPress={() => console.log(navigation)}>
-                <Text>이전</Text>
+                <FontAwesomeIcon icon={faArrowLeft} />
               </TouchableOpacity>
             ),
           })}
         />
         <Tab.Screen
-          name="Menu2"
-          component={Menu2Screen}
+          name="Menu"
+          component={Menu1Screen}
           options={({navigation}) => ({
-            title: '메뉴2',
+            title: '메뉴',
+            tabBarIcon: ({color, size}) => (
+              <FontAwesomeIcon icon={faBars} color={color} size={size} />
+            ),
             headerLeft: () => (
               <TouchableOpacity onPress={() => console.log(navigation)}>
-                <Text>이전</Text>
+                <FontAwesomeIcon icon={faArrowLeft} />
               </TouchableOpacity>
             ),
           })}
@@ -47,14 +65,5 @@ function Navigator() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  menuIcon: {
-    width: '100%', //가로비율
-    height: '100%', //세로비율
-    alignItems: 'center', //중간정렬
-    justifyContent: 'center',
-  },
-});
 
 export default Navigator;
