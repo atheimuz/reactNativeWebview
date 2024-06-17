@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import BottomTabBar from './src/navigation/BottomTabBar';
+import Navigator from './src/components/Navigator';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -36,7 +36,7 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <BottomTabBar />
+      <Navigator />
     </SafeAreaView>
   );
 }
