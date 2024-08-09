@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  Text,
   View,
   TextInput,
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  Linking,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -25,9 +25,41 @@ import Menu2Screen from './Menu2Screen';
 const Tab = createBottomTabNavigator();
 
 const windowWidth = Dimensions.get('window').width;
+
+const config = {
+  screens: {
+    Search: 'search',
+    Setting: 'setting',
+    Menu: 'menu',
+  },
+};
 function Navigator() {
+  const linking = {
+    prefixes: ['testdeep://'],
+    config,
+
+    async getInitialURL() {
+      // 최초 실행 시
+      const url = await Linking.getInitialURL();
+
+      if (url) {
+        return url;
+      }
+
+      return null;
+    },
+
+    subscribe(listener: (arg0: string) => any) {
+      const onReceiveURL = ({url}: {url: string}) => {
+        // 앱이 실행되어 있는 상태에서 요청이 왔을때
+        return listener(url);
+      };
+      Linking.addEventListener('url', onReceiveURL);
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Tab.Navigator
         initialRouteName="Home"
         options={{headerTitleAlign: 'center'}}>
