@@ -1,50 +1,28 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, Alert, Pressable} from 'react-native';
-
-import ExampleModal from './example/ExampleModal';
-
-const showAlert = () =>
-  Alert.alert(
-    'Alert',
-    'alert 띄우기',
-    [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('alert cancel'),
-        style: 'cancel',
-      },
-    ],
-    {
-      cancelable: true,
-    },
-  );
+import React from 'react';
+import {StyleSheet, ScrollView, Text, Pressable} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import ScreenLayout from './common/ScreenLayout';
 
 const HomeScreen = () => {
-  const [modalStatus, setModalStatus] = useState(false);
+  const navigation = useNavigation();
 
   return (
-    <View>
-      <Pressable style={styles.box} onPress={showAlert}>
-        <Text style={styles.btnText}>Alert</Text>
-      </Pressable>
-      <ExampleModal status={modalStatus} setStatus={setModalStatus} />
-      <Pressable style={styles.box} onPress={() => setModalStatus(true)}>
-        <Text style={styles.btnText}>Modal</Text>
-      </Pressable>
-    </View>
+    <ScreenLayout>
+      <ScrollView style={styles.wrapper}>
+        <Pressable onPress={() => navigation.navigate('Side')}>
+          <Text style={styles.btnText}>이동</Text>
+        </Pressable>
+      </ScrollView>
+    </ScreenLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  box: {
-    margin: 10,
-    padding: 20,
-    borderRadius: 10,
-    backgroundColor: 'gray',
+  wrapper: {
+    flex: 1,
   },
   btnText: {
     fontWeight: 'bold',
-    color: 'white',
   },
 });
 

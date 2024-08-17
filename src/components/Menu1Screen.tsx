@@ -1,19 +1,12 @@
 import React from 'react';
-import WebView from 'react-native-webview';
+import {Text} from 'react-native';
+import ScreenLayout from './common/ScreenLayout';
 
-const Menu1Screen = ({navigation}) => {
+const Menu1Screen = () => {
   return (
-    <WebView
-      source={{uri: 'https://naver.com'}}
-      onShouldStartLoadWithRequest={e => {
-        if (e.url === 'https://m.naver.com/aside/') {
-          navigation.navigate('Side');
-          return false;
-        }
-
-        return true;
-      }}
-    />
+    <ScreenLayout>
+      <Text>heyyy</Text>
+    </ScreenLayout>
   );
 };
 
