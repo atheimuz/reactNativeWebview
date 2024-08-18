@@ -3,6 +3,7 @@ import {Linking} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {BOTTOM_TAB_BAR_MENU} from '../schemes/menu';
 
 import HomeScreen from './HomeScreen';
 import SideScreen from './SideScreen';
@@ -21,6 +22,12 @@ const config = {
   },
 };
 
+const bottomTabScreens: {[key: string]: () => React.JSX.Element} = {
+  Home: HomeScreen,
+  User: UserScreen,
+  Setting: SettingScreen,
+};
+
 function HomeTabs() {
   return (
     <Tab.Navigator
@@ -28,16 +35,13 @@ function HomeTabs() {
         headerShown: false,
       }}
       tabBar={props => <BottomTabBar {...props} />}>
-      <Tab.Screen
-        name="Home"
-        options={{tabBarLabel: '홈'}}
-        component={HomeScreen}
-      />
-      <Tab.Screen
-        name="Menu"
-        options={{tabBarLabel: '메뉴'}}
-        component={Menu1Screen}
-      />
+      {BOTTOM_TAB_BAR_MENU.map(item => (
+        <Tab.Screen
+          name={item.value}
+          options={{tabBarLabel: item.title}}
+          component={bottomTabScreens[item.value]}
+        />
+      ))}
     </Tab.Navigator>
   );
 }

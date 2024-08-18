@@ -1,12 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faXmark, faHouse} from '@fortawesome/free-solid-svg-icons';
-
-const ICON_SCHEME = {
-  Home: faHouse,
-  Menu: faXmark,
-};
+import {BOTTOM_TAB_BAR_ICON} from '../schemes/menu';
 
 const BottomTabBar = ({
   state,
@@ -61,7 +56,7 @@ const BottomTabBar = ({
               onLongPress={onLongPress}
               style={styles.menu}>
               <FontAwesomeIcon
-                icon={ICON_SCHEME[route.name]}
+                icon={BOTTOM_TAB_BAR_ICON[route.name]}
                 size={20}
                 style={{...(isFocused && styles.activeColor)}}
               />
