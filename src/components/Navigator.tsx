@@ -69,12 +69,7 @@ function Navigator() {
     <NavigationContainer linking={linking}>
       <Stack.Navigator
         initialRouteName="Home"
-        screenOptions={{headerBackTitle: '이전'}}>
-        <Stack.Screen
-          name="Home"
-          component={HomeTabs}
-          options={{headerShown: false}}
-        />
+        screenOptions={{headerBackTitle: '이전', headerShown: false}}>
         <Stack.Screen
           name="Side"
           component={SideScreen}

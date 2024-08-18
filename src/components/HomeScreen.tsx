@@ -1,26 +1,25 @@
 import React from 'react';
-import {StyleSheet, ScrollView, Text, Pressable} from 'react-native';
+import {StyleSheet, Text, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import ScreenLayout from './common/ScreenLayout';
+import ScreenLayout from './base/ScreenLayout';
+import ScreenHeader from './base/ScreenHeader';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <ScreenLayout>
-      <ScrollView style={styles.wrapper}>
+    <>
+      <ScreenHeader title="홈" backVisible={false} />
+      <ScreenLayout>
         <Pressable onPress={() => navigation.navigate('Side')}>
           <Text style={styles.btnText}>이동</Text>
         </Pressable>
-      </ScrollView>
-    </ScreenLayout>
+      </ScreenLayout>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
   btnText: {
     fontWeight: 'bold',
   },
