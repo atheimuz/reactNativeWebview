@@ -1,6 +1,6 @@
 import React from 'react';
 import WebView from 'react-native-webview';
-import ScreenLayout from './common/ScreenLayout';
+import ScreenLayout from './base/ScreenLayout';
 
 const sideUrl = 'https://m.naver.com/aside/';
 const SideScreen = () => {
