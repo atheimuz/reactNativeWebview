@@ -6,8 +6,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './HomeScreen';
 import SideScreen from './SideScreen';
-import Menu1Screen from './Menu1Screen';
-import Menu2Screen from './Menu2Screen';
+import UserScreen from './UserScreen';
+import SettingScreen from './SettingScreen';
+import WebviewScreen from './WebviewScreen';
 import BottomTabBar from './BottomTabBar';
 
 const Stack = createNativeStackNavigator();
@@ -70,11 +71,13 @@ function Navigator() {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{headerBackTitle: '이전', headerShown: false}}>
+        <Stack.Screen name="Home" component={HomeTabs} />
         <Stack.Screen
           name="Side"
           component={SideScreen}
           options={{title: 'Side'}}
         />
+        <Stack.Screen name="Web" component={WebviewScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
