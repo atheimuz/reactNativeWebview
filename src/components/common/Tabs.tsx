@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import {StyleSheet, Pressable, Text, FlatList} from 'react-native';
 
 interface itemProps {
-  value: string;
+  key: string;
   title: string;
 }
 const Tabs = ({
@@ -15,23 +15,21 @@ const Tabs = ({
   onChange: (val: string) => void;
 }) => {
   return (
-    <>
-      <FlatList
-        style={styles.tabs}
-        horizontal
-        data={data}
-        showsHorizontalScrollIndicator={false}
-        renderItem={props => (
-          <TabItem
-            activeValue={value}
-            onChange={val => onChange(val)}
-            {...props}
-          />
-        )}
-        keyExtractor={item => item.value}
-        extraData={value}
-      />
-    </>
+    <FlatList
+      style={styles.tabs}
+      horizontal
+      data={data}
+      showsHorizontalScrollIndicator={false}
+      renderItem={props => (
+        <TabItem
+          activeValue={value}
+          onChange={val => onChange(val)}
+          {...props}
+        />
+      )}
+      keyExtractor={item => item.value}
+      extraData={value}
+    />
   );
 };
 
@@ -45,14 +43,14 @@ export const TabItem = ({
   onChange: (value: string) => void;
 }) => {
   const isActive = useMemo(
-    () => item.value === activeValue,
-    [item.value, activeValue],
+    () => item.key === activeValue,
+    [item.key, activeValue],
   );
 
   return (
     <Pressable
       style={[styles.tabItem, {...(isActive && styles.active)}]}
-      onPress={() => onChange(item.value)}>
+      onPress={() => onChange(item.key)}>
       <Text style={[styles.title, {...(isActive && styles.active)}]}>
         {item.title}
       </Text>
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
   },
   tabItem: {
     justifyContent: 'center',
-    height: 60,
+    height: 50,
     paddingHorizontal: 12,
     borderBottomWidth: 4,
     borderBottomColor: 'transparent',

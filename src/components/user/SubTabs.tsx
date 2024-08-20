@@ -1,18 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
 import Tabs from '../common/Tabs';
 
-import {USER_SUB_MENU} from '../../schemes/menu';
-
-const SubTabs = () => {
-  const [tab, setTab] = useState<string>(USER_SUB_MENU[0].value);
+const SubTabs = ({
+  navigationState,
+  jumpTo,
+}: {
+  navigationState: object;
+  jumpTo: (key: string) => void;
+}) => {
+  const {index, routes} = navigationState;
 
   return (
     <SafeAreaView style={styles.wrapper}>
       <Tabs
-        data={USER_SUB_MENU}
-        value={tab}
-        onChange={value => setTab(value)}
+        data={routes}
+        value={routes[index].key}
+        onChange={value => jumpTo(value)}
       />
     </SafeAreaView>
   );

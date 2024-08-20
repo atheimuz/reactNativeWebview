@@ -47,10 +47,9 @@ export const SETTING_MENU: {
 ];
 
 export const USER_SUB_MENU: {
-  value: string;
+  key: string;
   title: string;
 }[] = [
-  {value: 'profile', title: '프로필'},
-  {value: 'activity', title: '활동'},
-  {value: 'bookmark', title: '북마크'},
+  {key: 'profile', title: '프로필'},
+  {key: 'activity', title: '활동'},
 ];
